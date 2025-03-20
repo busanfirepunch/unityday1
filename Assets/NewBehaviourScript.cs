@@ -21,12 +21,14 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.z = Input.GetAxis("Vertical");
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        
 
-        movement.Normalize();
+        movement = transform.forward * v + transform.right * h;
+        transform.position += movement * speed * Time.deltaTime;
 
-        rigid.velocity = movement * speed;
+
     }
 
     private void Update()
@@ -45,6 +47,9 @@ public class NewBehaviourScript : MonoBehaviour
         {
             jumpCut = 0;
         }
-
+        
+        
     }
+   
+
 }
